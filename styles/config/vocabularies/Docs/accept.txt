@@ -26,6 +26,7 @@ Packagist('?s)?
 axios
 Jira
 Uvicorn
+Shiki
 
 pypi
 mypy
@@ -70,7 +71,9 @@ subpath
 [Ff]avicon
 snake_case
 camelCase
+performant
 
+num
 callout
 [Ee]nums?
 boolean
