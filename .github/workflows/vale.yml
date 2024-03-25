@@ -2,7 +2,7 @@ name: reviewdog
 on: 
   pull_request:
     paths:
-      - 'fern/docs/pages/**' # Only run on files within fern/docs/pages
+      - 'fern/docs/pages/**'
 
 jobs:
   vale:
