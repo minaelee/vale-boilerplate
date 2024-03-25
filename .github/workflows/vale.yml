@@ -14,12 +14,15 @@ jobs:
       - name: Determine Changed Files
         id: changed_files
         run: |
-          changed_files=$(jq -r '.pull_request.files // empty | .[] | select(.filename | startswith("fern/docs/pages/")) | .filename' $GITHUB_EVENT_PATH)
-          if [ -n "$changed_files" ]; then
-          echo "files=$changed_files" >> $GITHUB_ENV
+          changed_files=$(jq -r '.pull_request.files | length' $GITHUB_EVENT_PATH)
+          if [ "$changed_files" -gt 0 ]; then
+            jq -r '.pull_request.files[] | select(.filename | startswith("fern/docs/pages/")) | .filename' $GITHUB_EVENT_PATH | tr '\n' ' ' > changed_files.txt
+          else
+            echo "No files changed in the pull request."
           fi
 
       - name: Run Vale
+        if: steps.changed_files.outputs.changed_files != 'No files changed in the pull request.'
         uses: errata-ai/vale-action@reviewdog
         with:
-          files: ${{ env.files }}
+          files: $(cat changed_files.txt)
