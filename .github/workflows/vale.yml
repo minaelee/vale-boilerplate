@@ -16,6 +16,7 @@ jobs:
         run: |
           echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'fern/docs/pages/')" >> $GITHUB_ENV
 
-      - uses: errata-ai/vale-action@reviewdog
+      - name: Run Vale
+        uses: errata-ai/vale-action@reviewdog
         with:
           files: ${{ env.files }}
