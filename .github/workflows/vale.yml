@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Determine Changed Files
+        id: changed_files
+        run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'fern/docs/pages/')"
+
       - uses: errata-ai/vale-action@reviewdog
         with:
-          files: fern/docs/pages
+          files: ${{ steps.changed_files.outputs.files }}
