@@ -14,8 +14,10 @@ jobs:
       - name: Determine Changed Files
         id: changed_files
         run: |
-          changed_files=$(jq -r '.pull_request.files[] | select(.filename | startswith("fern/docs/pages/")) | .filename' $GITHUB_EVENT_PATH)
+          changed_files=$(jq -r '.pull_request.files // empty | .[] | select(.filename | startswith("fern/docs/pages/")) | .filename' $GITHUB_EVENT_PATH)
+          if [ -n "$changed_files" ]; then
           echo "files=$changed_files" >> $GITHUB_ENV
+          fi
 
       - name: Run Vale
         uses: errata-ai/vale-action@reviewdog
