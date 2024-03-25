@@ -14,8 +14,8 @@ jobs:
       - name: Determine Changed Files
         id: changed_files
         run: |
-          git diff --name-only $(git merge-base ${{ github.event.before }} ${{ github.sha }}) \
-          ${{ github.sha }} -- 'fern/docs/pages/' | xargs echo "files=" >> $GITHUB_ENV
+          echo "files=$(git diff --name-only $(git merge-base ${{ github.event.before }} ${{ github.sha }}) \
+          ${{ github.sha }} -- 'fern/docs/pages/')" >> $GITHUB_ENV
 
       - name: Run Vale
         uses: errata-ai/vale-action@reviewdog
