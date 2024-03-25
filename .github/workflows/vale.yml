@@ -1,0 +1,22 @@
+name: reviewdog
+on: 
+  pull_request:
+    paths:
+      - 'fern/docs/pages/**' # Only run on files within fern/docs/pages
+
+jobs:
+  vale:
+    name: runner / vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Determine Changed Files
+        id: changed_files
+        run: |
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'fern/docs/pages/')" >> $GITHUB_ENV
+
+      - name: Run Vale
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          files: ${{ env.files }}
