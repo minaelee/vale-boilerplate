@@ -42,7 +42,7 @@ swap:
   # CLI: command-line tool
   click on: click|click in
   # Cloud: Google Cloud Platform|GCP
-  Container Engine: Kubernetes Engine
+  # Container Engine: Kubernetes Engine
   content type: media type
   curated roles: predefined roles
   data are: data is
@@ -55,7 +55,7 @@ swap:
   functionality: capability|feature
   # Google account: Google Account
   # Google accounts: Google Accounts
-  Googling: search with Google
+  # Googling: search with Google
   grayed-out: unavailable
   HTTPs: HTTPS
   in order to: to
