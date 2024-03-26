@@ -18,7 +18,7 @@ jobs:
           format: 'json'
 
       - name: Copy Custom Styles
-        run: cp -R fern/docs/pages/vale-styles $GITHUB_WORKSPACE/fern/docs/pages/vale-styles
+        run: cp -R fern/docs/pages/vale-styles $GITHUB_WORKSPACE/fern/docs/pages/.
 
       - name: Echo styles folder
         run: ls $GITHUB_WORKSPACE/fern/docs/pages/vale-styles
