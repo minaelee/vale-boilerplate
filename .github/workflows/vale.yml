@@ -17,6 +17,13 @@ jobs:
         with:
           format: 'json'
 
+      - name: Copy Custom Styles
+        run: cp -R fern/docs/pages/vale-styles $GITHUB_WORKSPACE/styles
+
+      - name: Configure Vale
+        run: |
+          echo 'StylesPath = "styles"' > .vale.ini
+
       - name: Run Vale
         uses: errata-ai/vale-action@reviewdog
         with:
