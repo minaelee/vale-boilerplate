@@ -20,6 +20,12 @@ jobs:
       - name: Copy Custom Styles
         run: cp -R fern/docs/pages/vale-styles $GITHUB_WORKSPACE/styles
 
+      - name: Echo styles folder
+        run: ls $GITHUB_WORKSPACE/styles
+
+      - name: Echo .vale.ini
+        run: cat $GITHUB_WORKSPACE/.vale.ini
+
       - name: Run Vale
         uses: errata-ai/vale-action@reviewdog
         with:
